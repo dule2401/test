@@ -16,55 +16,8 @@ import {
   IconMountains,
 } from "@/shared/assets/icons";
 import { MenuItem } from "./Sidebar";
+import { useFetchAllInfo } from "@/core/hooks/useFetchAllInfo";
 
-const MenuStyle = styled("div", {
-  gap: "10px",
-  display: "flex",
-  alignItems: "center",
-  background: "white",
-  justifyContent: "space-between",
-  "@media (max-width: 1400px)": {
-    padding: "0 24px",
-  },
-  "@media (max-width: 765px)": {
-    padding: "0 16px",
-  },
-});
-
-const StyledBoxIconMenu = styled("div", {
-  border: "1px solid #006db3",
-  padding: "6px 6px",
-  borderRadius: "5px",
-  width: "20px",
-  height: "20px",
-  svg: {
-    path: {
-      fill: " #006db3",
-    },
-  },
-});
-
-const StyledHeaderBox = styled("div", {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  width: "100%",
-  img: {
-    width: "80px",
-  },
-  ".logo": {
-    display: "flex",
-    alignItems: "center",
-    fontSize: "26px",
-    fontWeight: "bold",
-    "@media (max-width: 768px)": {
-      display: "flex",
-      alignItems: "center",
-      fontSize: "12px",
-      fontWeight: "bold",
-    },
-  },
-});
 const StyledRightBox = styled("div", {
   display: "flex",
   gap: "16px",
@@ -83,6 +36,7 @@ export const Header = () => {
   const { updateAppProps } = useAppProvider();
   const { isMobie } = useMedia();
   const { pathname } = location;
+  const { data } = useFetchAllInfo({ revalidateOnMount: false });
 
   const [defaultPath, setDefaultPath] = useState<string>(pathname);
 
@@ -99,31 +53,12 @@ export const Header = () => {
       }
     }
   }, [pathname, search]);
-  const MenuList: MenuItem[] = [
-    { key: "/", label: "Titre  1" },
-    { key: "/titre-2", label: "Titre  2" },
-    { key: "/titre-3", label: "Titre  3" },
-    { key: "/titre-4", label: "Titre  4" },
-  ];
+  const MenuList: MenuItem[] = data?.head_menu?.map((item: string) => {
+    return { key: `/`, label: item };
+  });
 
   return (
     <PageHeader>
-      {/* {isMobie ? (
-        <MenuStyle>
-          <StyledHeaderBox>
-            <div className="logo">LOGO SAMPLE</div>
-            <StyledBoxIconMenu
-              onClick={() => {
-                updateAppProps({
-                  collapsed: true,
-                });
-              }}
-            >
-              ***
-            </StyledBoxIconMenu>
-          </StyledHeaderBox>
-        </MenuStyle>
-      ) : ( */}
       <MenuSidebar>
         <div className="logo_header">LOGO SAMPLE</div>
         {!isMobie ? (

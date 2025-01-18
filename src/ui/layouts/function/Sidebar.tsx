@@ -6,6 +6,7 @@ import { Menu, MenuProps } from "antd";
 import useClickOutside from "../../../shared/hooks/useClickOutside";
 import { useEffect, useRef, useState } from "react";
 import { MenuSidebar } from "./styles";
+import { useFetchAllInfo } from "@/core/hooks/useFetchAllInfo";
 
 const StyledSidebar = styled("div", {
   height: "100%",
@@ -36,6 +37,10 @@ const StyledSidebar = styled("div", {
       marginTop: "12px",
       ".ant-menu": {
         border: "none",
+      },
+      "@media (max-width: 765px)": {
+        background: "white !important",
+        alignItems: "flex-start",
       },
     },
   },
@@ -88,12 +93,10 @@ export const Sidebar = () => {
   const ref = useRef(null);
   const { collapsed, updateAppProps } = useAppProvider();
   const { navigate, location, search } = useRouter();
-  const MenuList: MenuItem[] = [
-    { key: "/", label: "Titre  1" },
-    { key: "/titre-2", label: "Titre  2" },
-    { key: "/titre-3", label: "Titre  3" },
-    { key: "/titre-4", label: "Titre  4" },
-  ];
+  const { data } = useFetchAllInfo({ revalidateOnMount: false });
+  const MenuList: MenuItem[] = data?.head_menu?.map((item: string) => {
+    return { key: `/`, label: item };
+  });
 
   const onChangePage = (e: any) => {
     navigate(e.key);

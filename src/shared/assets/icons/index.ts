@@ -15,3 +15,6 @@ export * from "./IconTitle";
 export * from "./IconCamera";
 export * from "./IconMenu";
 export * from "./IconCloseSidebar";
+export * from "./IconArrowLeft";
+export * from "./IconArrowRight";
+export * from "./IconAttachmentFile";

@@ -37,11 +37,14 @@ export const StyledSliderContainer = styled("div", {
 export const StyledSliderWrapper = styled("div", {
   display: "flex",
   gap: "$gap",
-  width: '100%',
+  width: "100%",
   scrollSnapType: "x mandatory", // Bắt buộc cuộn theo từng phần tử
   overflowX: "auto",
   scrollBehavior: "smooth",
   padding: "10px 0",
+  "@media (max-width: 765px)": {
+    padding: "0",
+  },
   "&::-webkit-scrollbar": {
     display: "none",
   },

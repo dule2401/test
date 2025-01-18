@@ -20,6 +20,9 @@ const StyledBlocFour = styled("div", {
     fontWeight: 600,
     fontSize: "48px",
     lineHeight: "48px",
+    "@media (max-width: 765px)": {
+      fontSize: "24px",
+    },
   },
   ".text_box": {
     marginTop: "24px",
@@ -47,11 +50,21 @@ const StyledBlocFour = styled("div", {
 });
 
 const StyledImg = styled("img", {});
-const StyledContent = styled("div", {});
+const StyledContent = styled("div", {
+  "@media (max-width: 765px)": {
+    background: "white",
+    borderRadius: "20px",
+    padding: "24px",
+    margin: "24px",
+    opacity: "0.6",
+  },
+});
 const StyledImgContent = styled("img", {
   width: "40%",
   "@media (max-width: 765px)": {
     width: "100%",
+    position: "absolute",
+    zIndex: -1,
   },
 });
 
@@ -84,6 +97,13 @@ const StyledPartnerItem = styled("div", {
     textAlign: "center",
     fontSize: "18px",
     color: "#562C2CCC",
+  },
+});
+
+const StyledBlocFourWrapper = styled("div", {
+  padding: "40px 15% 80px 15%",
+  "@media (max-width: 765px)": {
+    padding: "40px 0 80px 0",
   },
 });
 
@@ -127,7 +147,7 @@ export const BlocFour = ({
     return { ...item, image }; // Add the image to the case
   });
   return (
-    <StyledBlocWapper>
+    <StyledBlocFourWrapper>
       <StyledBlocFour>
         <StyledContent>
           <StyledImg src={IconTitle} />
@@ -151,6 +171,6 @@ export const BlocFour = ({
           </StyledPartnerItem>
         ))}
       </StyledPartner>
-    </StyledBlocWapper>
+    </StyledBlocFourWrapper>
   );
 };

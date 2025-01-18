@@ -11,7 +11,10 @@ import { IconArrowUpRight, IconCamera } from "@/shared/assets/icons";
 import Icon from "@ant-design/icons";
 
 const StyledBlocFive = styled("div", {
-  background: "rgba(234, 252, 255, 1)",
+  // height: "max-content
+  // width: "100%",
+  background:
+    "linear-gradient(0deg, rgb(265, 252, 255), #B5E4F5), linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)",
 });
 const StyledBlocHeader = styled("div", {
   display: "flex",
@@ -49,7 +52,7 @@ const StyledBlocContent = styled("div", {
   borderRadius: "20px",
   padding: "40px 100px",
   "@media (max-width: 765px)": {
-    padding: "24px",
+    padding: "0px",
   },
   ".content_block": {
     background: "white",
@@ -77,6 +80,10 @@ const StyledBlocContent = styled("div", {
         color: "#000000",
         fontWeight: "400",
         fontSize: "20px",
+        padding: '0 14px',
+        "@media (max-width: 765px)": {
+          fontSize: "14px",
+        },
       },
       ".content_block_title": {
         color: "#000000",
@@ -107,7 +114,7 @@ const StyledBlockItem = styled("div", {
   width: "24%",
   "@media (max-width: 765px)": {
     flexWrap: "wrap",
-    width: "45%",
+    width: "46%",
   },
   img: {
     width: "100%",
@@ -149,10 +156,10 @@ export const BlocFive = ({ props }: any) => {
         image = Img4;
         break;
       default:
-        image = Img1; // default image if more than 3 items
+        image = Img1;
         break;
     }
-    return { ...item, image }; // Add the image to the case
+    return { ...item, image };
   });
 
   const imgRef = useRef(null);
